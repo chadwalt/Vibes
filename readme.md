@@ -1,6 +1,8 @@
 # Vibes
 
 [![CircleCI](https://circleci.com/gh/chadwalt/Vibes.svg?style=svg)](https://circleci.com/gh/chadwalt/Vibes)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ac742319b528f6728271/maintainability)](https://codeclimate.com/github/chadwalt/Vibes/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ac742319b528f6728271/test_coverage)](https://codeclimate.com/github/chadwalt/Vibes/test_coverage)
 
 Vibes is a Music Store Application API that will bring an upcoming artiste to the limelight. The application is built on top of the lumen framework.
 
