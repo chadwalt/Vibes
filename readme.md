@@ -1,20 +1,46 @@
-# Lumen PHP Framework
+# Vibes
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+[![CircleCI](https://circleci.com/gh/chadwalt/Vibes.svg?style=svg)](https://circleci.com/gh/chadwalt/Vibes)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ac742319b528f6728271/maintainability)](https://codeclimate.com/github/chadwalt/Vibes/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ac742319b528f6728271/test_coverage)](https://codeclimate.com/github/chadwalt/Vibes/test_coverage)
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Vibes is a Music Store Application API that will bring an upcoming artiste to the limelight. The application is built on top of the lumen framework.
 
-## Official Documentation
+## Installation Requirements
 
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
+For the Vibes application to fully function the following requirements need to be installed:-
 
-## Security Vulnerabilities
+- Composer
+- PHP
+- Postgres
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Clone/Download the repo to your desired directory.
+
+```
+git clone https://github.com/chadwalt/Vibes.git
+```
+
+Move into vibes directory and run the `composer install` command to install all packages.
+
+## Serving the Application
+
+To serve the application, php has a built in development server which can be started by running this command.
+
+```
+php -S localhost:8000 -t public
+```
+
+## Configuration
+
+All configuration for the lumen framework can be done in the `.env` file. A sample `.env.example` has been included in the repo. This has to be renamed to `.env`.
+
+## Running Tests
+
+To run all tests in the application run this command.
+
+```
+vendor/bin/phpunit
+```
 
 ## License
 
