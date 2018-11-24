@@ -1,0 +1,21 @@
+{
+  "name": "Vibes",
+  "description": "Vibes is a Music Store Application API that will bring an upcoming artiste to the limelight.",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ]
+}
