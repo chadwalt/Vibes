@@ -14,6 +14,14 @@ For the Vibes application to fully function the following requirements need to b
 - PHP
 - Postgres
 
+Clone/Download the repo to your desired directory.
+
+```
+git clone https://github.com/chadwalt/Vibes.git
+```
+
+Move into vibes directory and run the `composer install` command to install all packages.
+
 ## Serving the Application
 
 To serve the application, php has a built in development server which can be started by running this command.
