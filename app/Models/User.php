@@ -18,7 +18,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'first_name', 'last_name', 'username', 'email', 'password'
     ];
 
     /**
@@ -28,5 +28,18 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
+    ];
+
+    /**
+     * These rules must be fulfilled when validating
+     *
+     * @var array
+     */
+    public static $rules = [
+        'first_name' => 'required|string',
+        'last_name' => 'required|string',
+        'email' => 'required|string|email|unique:users',
+        'username' => 'required|unique:users',
+        'password' => 'required|confirmed',
     ];
 }
