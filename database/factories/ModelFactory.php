@@ -18,7 +18,8 @@ $factory->define(
             'last_name' => $faker->lastName,
             'email' => 'johndeo@gmail.com',
             'password' => '$2y$10$YcUVoDjHkSAm1gSoSl9vsObfe2cHi/qob/oK9aAPA59TYFrQ6.bxS',
-            'username' => $faker->username
+            'username' => $faker->username,
+            'role' => 'user'
         ];
     }
 );
