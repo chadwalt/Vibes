@@ -27,3 +27,22 @@ Vibes is a Music Store Application API that will bring an upcoming artiste to th
                 "message": "User Created",
             }
         ]
+
+## Sign-in User [/api/v1/user/]
+
+### Sign-up [POST]
+
++ Request (application/json)
+
+        {
+            "email": "JohnDeo@gmail.com",
+            "password": "John",
+        }
+
++ Response 200 (application/json)
+
+        [
+            {
+                "message": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk",
+            }
+        ]
