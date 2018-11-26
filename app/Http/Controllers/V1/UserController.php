@@ -37,6 +37,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->username = $request->username;
+        $user->role = $request->role ?? 'user';
 
         if ($user->save()) {
             $response = $this->respond(

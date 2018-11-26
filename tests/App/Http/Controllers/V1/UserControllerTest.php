@@ -19,7 +19,8 @@ class UserControllerTest extends TestCase
         'email' => 'kasirye@gmail.com',
         'username' => 'kasirye',
         'password' => '323',
-        'password_confirmation' => '323'
+        'password_confirmation' => '323',
+        'role' => 'user'
     ];
 
     /**
