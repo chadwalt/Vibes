@@ -11,9 +11,14 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-    ];
-});
+$factory->define(
+    App\Models\User::class, function (Faker\Generator $faker) {
+        return [
+            'first_name' => $faker->firstName(),
+            'last_name' => $faker->lastName,
+            'email' => 'johndeo@gmail.com',
+            'password' => '$2y$10$YcUVoDjHkSAm1gSoSl9vsObfe2cHi/qob/oK9aAPA59TYFrQ6.bxS',
+            'username' => $faker->username
+        ];
+    }
+);
