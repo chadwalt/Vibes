@@ -7,25 +7,29 @@ use App\Models\User;
 use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
 use App\Http\Controllers\V1\RestActions;
+use Illuminate\Http\Response;
+
 
 /**
  * Handle expiration expiration and validation of JWT
  */
 class JwtMiddleware
 {
+    use RestActions;
+
     /**
      * Process the request before moving it deeper into the application.
      *
      * @param Request $request the incoming request
-     * @param Closure $next the closure
+     * @param Closure $next    the closure
      *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        $token = $request->get('token');
+        $token = $request->header('api-token');
 
-        if (!token) {
+        if (!$token) {
             return $this->respond(
                 Response::HTTP_UNAUTHORIZED,
                 'API Token not provided'
@@ -33,7 +37,7 @@ class JwtMiddleware
         }
 
         try {
-            $credentials = JWT::decode(token, env('JWT_KEY'), array('HS256'));
+            $credentials = JWT::decode($token, env('JWT_KEY'), array('HS256'));
         } catch (ExpiredException $exception) {
             return $this->respond(
                 Response::HTTP_BAD_REQUEST,
@@ -49,6 +53,6 @@ class JwtMiddleware
         $user = User::find($credentials->sub);
         $request->user = $user;
 
-        return next($request);
+        return $next($request);
     }
 }
