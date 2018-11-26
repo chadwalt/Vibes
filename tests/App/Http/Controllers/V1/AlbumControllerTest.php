@@ -34,7 +34,7 @@ class AlbumControllerTest extends TestCase
     {
         parent::setUp();
 
-        $user = factory(\App\Models\User::class)->create();
+        $user = factory(\App\Models\User::class)->create(['role' => 'artiste']);
         $this->_token = $this->generateToken($user);
     }
 
