@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Response;
+use Firebase\JWT\JWT;
+use Firebase\JWT\ExpiredException;
 
 /**
  * UserController class controlls all operations of the user.
@@ -44,5 +46,63 @@ class UserController extends Controller
         }
 
         return $response;
+    }
+
+    /**
+     * Generate API Token
+     *
+     * @param User $user the current user
+     *
+     * @return string token The api token generated.
+     */
+    private function _generateToken(User $user)
+    {
+        $payload = [
+            'iss' => 'vibes',
+            'sub' => $user->id,
+            'iat' => time(),
+            'exp' => time() + 60*60,
+        ];
+
+        return JWT::encode($payload, env('JWT_KEY'));
+    }
+
+    /**
+     * Authenticate user on loggin.
+     *
+     * @param Request $request Request
+     *
+     * @return object Response
+     */
+    public function authenticateUser(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'email' => 'string|email|required',
+                'password' => 'string|required'
+            ]
+        );
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return $this->respond(
+                Response::HTTP_NOT_FOUND,
+                ['message' => 'User not found']
+            );
+        }
+
+        if (Hash::check($request->password, $user->password)) {
+            return $this->respond(
+                Response::HTTP_OK,
+                ['api_token' => $this->_generateToken($user)]
+            );
+        }
+
+        return $this->respond(
+            Response::HTTP_UNPROCESSABLE_ENTITY,
+            ['message' => 'Wrong email or password provided.']
+        );
     }
 }
