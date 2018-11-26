@@ -11,11 +11,26 @@
 |
 */
 
-## Sign-up-in User.
+/**
+ * Sign-up-in User Routes.
+ */
 $router->group(
     ['prefix' => 'api/v1/user'],
     function () use ($router) {
         $router->post('signup', 'UserController@createUser');
         $router->post('/', 'UserController@authenticateUser');
+    }
+);
+
+/*
+* Album Routes.
+*/
+$router->group(
+    ['prefix' => 'api/v1/album'],
+    function () use ($router) {
+        $router->post('/', 'AlbumController@create');
+        $router->get('/', 'AlbumController@getAlbums');
+        $router->patch('/{album_id}', 'AlbumController@update');
+        $router->delete('/{album_id}', 'AlbumController@delete');
     }
 );

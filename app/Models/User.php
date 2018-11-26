@@ -43,4 +43,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password' => 'required|confirmed',
         'role' => 'string'
     ];
+
+    /**
+     * Get all user albums
+     *
+     * @return relationship
+     */
+    public function albums()
+    {
+        return $this->hasMany('App\Models\Album');
+    }
 }
