@@ -23,3 +23,13 @@ $factory->define(
         ];
     }
 );
+
+$factory->define(
+    App\Models\Album::class, function (Faker\Generator $faker) {
+        return [
+            'name' => $faker->title,
+            'description' => $faker->text(50),
+            'user_id' => 1,
+        ];
+    }
+);
