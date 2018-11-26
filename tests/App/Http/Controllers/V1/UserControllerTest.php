@@ -9,7 +9,7 @@ use TestCase;
 class UserControllerTest extends TestCase
 {
     /**
-     * User test details.
+     * Sign-up User test details.
      *
      * @var array
      */
@@ -20,6 +20,14 @@ class UserControllerTest extends TestCase
         'username' => 'kasirye',
         'password' => '323',
         'password_confirmation' => '323'
+    ];
+
+    /**
+     * Sign-in User test detials
+     */
+    private $_userLoginDetails = [
+        'email' => 'johndeo@gmail.com',
+        'password' => '3223'
     ];
 
     /**
@@ -70,4 +78,71 @@ class UserControllerTest extends TestCase
             $response->content()
         );
     }
+
+    /**
+     * Test successfull user login
+     *
+     * @return void
+     */
+    public function testLoginSuccess()
+    {
+        factory(\App\Models\User::class)->create();
+
+        $response = $this->call('post', 'api/v1/user/', $this->_userLoginDetails);
+        $this->assertEquals(200, $response->status());
+    }
+
+    /**
+     * Test login with wrong email
+     *
+     * @return void
+     */
+    public function testLoginWithWrongEmail()
+    {
+        factory(\App\Models\User::class)->create();
+
+        $this->_userLoginDetails['email'] = 'deo@gmail.com';
+        $response = $this->call('post', 'api/v1/user/', $this->_userLoginDetails);
+        $this->assertEquals(404, $response->status());
+        $this->assertContains(
+            'User not found',
+            $response->content()
+        );
+    }
+
+    /**
+     * Test login with wrong password
+     *
+     * @return void
+     */
+    public function testLoginWithWrongPassword()
+    {
+        factory(\App\Models\User::class)->create();
+
+        $this->_userLoginDetails['password'] = '123';
+        $response = $this->call('post', 'api/v1/user/', $this->_userLoginDetails);
+        $this->assertEquals(422, $response->status());
+        $this->assertContains(
+            'Wrong email or password provided.',
+            $response->content()
+        );
+    }
+
+
+    /**
+     * Test valid login details
+     *
+     * @return void
+     */
+    public function testLoginWithInvalidCredentials()
+    {
+        $this->_userLoginDetails['email'] = '123';
+        $response = $this->call('post', 'api/v1/user/', $this->_userLoginDetails);
+        $this->assertEquals(422, $response->status());
+        $this->assertContains(
+            'The email must be a valid email address.',
+            $response->content()
+        );
+    }
+
 }
