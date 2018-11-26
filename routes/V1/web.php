@@ -11,9 +11,11 @@
 |
 */
 
+## Sign-up-in User.
 $router->group(
     ['prefix' => 'api/v1/user'],
     function () use ($router) {
         $router->post('signup', 'UserController@createUser');
+        $router->post('/', 'UserController@authenticateUser');
     }
 );
