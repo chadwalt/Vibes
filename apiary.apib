@@ -47,3 +47,78 @@ Vibes is a Music Store Application API that will bring an upcoming artiste to th
                 "message": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk",
             }
         ]
+        
+# Group Album Collection
+
+## Create and Get all Albums [/api/v1/album]
+
+### Create Album [POST]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+    
+    + Body
+            
+            {
+                "name": "Love",
+                "decription": "Love rocks",
+            }
+
++ Response 201 (application/json)
+
+        [
+            {
+                "message": "Album Created",
+            }
+        ]
+
+### Get all Album [GET]
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
++ Response 201 (application/json)
+
+        [
+            {
+                "name": "Love Hurts",
+                "Description": "Hurts deeply"
+            },
+            {
+                "name": "Am Speeding",
+                "Description": "Speeding is coming"
+            },
+        ]
+
+## Update and Delete Album [/api/v1/album/{id}]
+### Update Album [PATCH]
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+    
+    + Body
+        
+            {
+                "name": "Love",
+                "decription": "Love rocks",
+            }
++ Response 200 (application/json)
+
+        [
+            {
+                "name": "Love",
+                "Description": "Love rocks"
+            }
+        ]
+        
+### Delete Album [DELETE]
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+    
++ Response 204 (application/json)
