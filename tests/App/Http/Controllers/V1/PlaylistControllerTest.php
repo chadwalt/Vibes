@@ -69,4 +69,42 @@ class PlaylistControllerTest extends TestCase
         $this->seeStatusCode(422);
         $this->assertEquals('The name field is required.', $content->name[0]);
     }
+
+    /**
+     * Test successful creation of a Playlist song.
+     *
+     * @return void
+     */
+    public function testCreatePlaylistSongSuccess()
+    {
+        factory(\App\Models\Album::class)->create();
+        factory(\App\Models\Playlist::class)->create();
+        factory(\App\Models\Song::class)->create();
+        $this->post(
+            'api/v1/playlist/1/song/1', $this->_playlistData, ['api-token' => $this->_token]
+        );
+        $this->seeStatusCode(201);
+        $this->seeInDatabase(
+            'playlist_songs', [ 'song_id' => 1]
+        );
+    }
+
+    /**
+     * Test validation of playlist data.
+     *
+     * @return void
+     */
+    public function testCreatePlaylistSongFailure()
+    {
+        factory(\App\Models\Album::class)->create();
+        factory(\App\Models\Playlist::class)->create();
+        factory(\App\Models\Song::class)->create();
+        $this->post(
+            'api/v1/playlist/12/song/12', $this->_playlistData, ['api-token' => $this->_token]
+        );
+        $this->seeStatusCode(404);
+        $this->missingFromDatabase(
+            'playlist_songs', [ 'song_id' => 12]
+        );
+    }
 }
