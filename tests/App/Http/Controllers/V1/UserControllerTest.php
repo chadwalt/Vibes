@@ -18,8 +18,8 @@ class UserControllerTest extends TestCase
         'last_name' => 'kasirye',
         'email' => 'kasirye@gmail.com',
         'username' => 'kasirye',
-        'password' => '323',
-        'password_confirmation' => '323',
+        'password' => '322er@Fwe3',
+        'password_confirmation' => '322er@Fwe3',
         'role' => 'user'
     ];
 
@@ -68,6 +68,7 @@ class UserControllerTest extends TestCase
     {
         $this->_userData['username'] =  '';
         $this->_userData['email'] = 'jon.com';
+        $this->_userData['password'] = 'jon.com';
         $response = $this->call('post', 'api/v1/user/signup', $this->_userData);
         $this->assertEquals(422, $response->status());
         $this->assertContains(

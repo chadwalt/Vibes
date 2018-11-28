@@ -18,6 +18,7 @@ class SongControllerTest extends TestCase
     private $_songData = [
         'name' => 'Jesus Walks',
         'description' => 'Walks in my life',
+        'genre' => 'pop'
     ];
 
     /**
