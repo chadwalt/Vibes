@@ -22,9 +22,10 @@ class Song extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required|string',
-        'description' => 'string',
-        'song' => 'file|max:2048|mimetypes:audio/mpeg'
+        'name' => 'required|string|min:3',
+        'description' => 'string|min:3',
+        'song' => 'file|max:2048|mimetypes:audio/mpeg',
+        'genre' => 'string|min:3'
     ];
 
     /**
