@@ -31,6 +31,14 @@ class UserController extends Controller
     {
         $response = $this->validate($request, User::$rules);
 
+        if (empty($this->_validatePassword($request->password))) {
+            return $this->respond(
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                ['message' => 'The password must contain 1 lowercase,1 uppercase,
+                                numeric, special character, and 8 characters long']
+            );
+        }
+
         $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -108,6 +116,24 @@ class UserController extends Controller
     }
 
     /**
+     * Validate password
+     *
+     * @param string password - The password provided by the user.
+     *
+     * @return mixed
+     */
+    private function _validatePassword($password)
+    {
+        $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/";
+
+        if (!preg_match($password_regex, $password)) {
+            return null;
+        }
+
+        return $password;
+    }
+
+    /**
      * Validate email address and password.
      *
      * @param Request $request Request
@@ -117,7 +143,6 @@ class UserController extends Controller
     public function validateData(Request $request)
     {
         $email_regex = '/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i';
-        $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/";
 
         if (!preg_match($email_regex, $request->email)) {
             return $this->respond(
@@ -126,16 +151,9 @@ class UserController extends Controller
             );
         }
 
-        if (!preg_match($password_regex, $request->password)) {
-            return $this->respond(
-                Response::HTTP_UNPROCESSABLE_ENTITY,
-                ['message' => 'The password must contain 1 lowercase, 1 uppercase, numeric, special character, and 8 characters long']
-            );
-        }
-
         return $this->respond(
             Response::HTTP_OK,
-            ['message' => 'Valid details provided']
+            ['message' => 'Valid email provided']
         );
     }
 }
