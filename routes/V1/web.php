@@ -23,7 +23,7 @@ $router->group(
     }
 );
 
-/*
+/**
  * Album Routes.
  */
 $router->group(
@@ -36,7 +36,7 @@ $router->group(
     }
 );
 
-/*
+/**
  * Song Routes.
  */
 $router->group(
@@ -50,12 +50,22 @@ $router->group(
     }
 );
 
-/*
+/**
  * Search Routes.
  */
 $router->group(
     ['prefix' => 'api/v1/search'],
     function () use ($router) {
         $router->get('/song', 'SongController@search');
+    }
+);
+
+/**
+ * Playlist Routes.
+ */
+$router->group(
+    ['prefix' => 'api/v1/playlist'],
+    function () use ($router) {
+        $router->post('/', 'PlaylistController@create');
     }
 );
