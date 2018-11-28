@@ -35,4 +35,14 @@ class Album extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    /**
+     * Get all songs of the album
+     *
+     * @return relationship
+     */
+    public function song()
+    {
+        return $this->hasMany('App\Models\Song');
+    }
 }
