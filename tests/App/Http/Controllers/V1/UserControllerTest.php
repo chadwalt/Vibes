@@ -146,4 +146,37 @@ class UserControllerTest extends TestCase
         );
     }
 
+    /**
+     * Test valid email and password details
+     *
+     * @return void
+     */
+    public function testEmailPasswordSuccess()
+    {
+        $userData = [
+            'email' => 'chad@gmail.com',
+            'password' => 'k@T3kk2ns'
+        ];
+        $response = $this->call('post', 'api/v1/user/validate', $userData);
+        $this->assertEquals(200, $response->status());
+    }
+
+    /**
+     * Test invalid email and password details
+     *
+     * @return void
+     */
+    public function testEmailPasswordFailure()
+    {
+        $userData = [
+            'email' => 'chad.gmail.com',
+            'password' => 'k@T3kk2ns'
+        ];
+        $response = $this->call('post', 'api/v1/user/validate', $userData);
+        $this->assertEquals(422, $response->status());
+
+        $userData['password'] = '23ds';
+        $response = $this->call('post', 'api/v1/user/validate', $userData);
+        $this->assertEquals(422, $response->status());
+    }
 }
