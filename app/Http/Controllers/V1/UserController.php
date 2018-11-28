@@ -106,4 +106,36 @@ class UserController extends Controller
             ['message' => 'Wrong email or password provided.']
         );
     }
+
+    /**
+     * Validate email address and password.
+     *
+     * @param Request $request Request
+     *
+     * @return object Response
+     */
+    public function validateData(Request $request)
+    {
+        $email_regex = '/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i';
+        $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/";
+
+        if (!preg_match($email_regex, $request->email)) {
+            return $this->respond(
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                ['message' => 'Invalid email provided.']
+            );
+        }
+
+        if (!preg_match($password_regex, $request->password)) {
+            return $this->respond(
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                ['message' => 'The password must contain 1 lowercase, 1 uppercase, numeric, special character, and 8 characters long']
+            );
+        }
+
+        return $this->respond(
+            Response::HTTP_OK,
+            ['message' => 'Valid details provided']
+        );
+    }
 }

@@ -19,6 +19,7 @@ $router->group(
     function () use ($router) {
         $router->post('signup', 'UserController@createUser');
         $router->post('/', 'UserController@authenticateUser');
+        $router->post('/validate', 'UserController@validateData');
     }
 );
 
