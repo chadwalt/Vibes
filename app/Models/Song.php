@@ -39,6 +39,16 @@ class Song extends Model
     }
 
     /**
+     * Get all comments of the song
+     *
+     * @return relationship
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    /**
      * Get all songs and their respective album names
      *
      * @return collection
