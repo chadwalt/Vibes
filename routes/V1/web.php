@@ -34,3 +34,13 @@ $router->group(
         $router->delete('/{album_id}', 'AlbumController@delete');
     }
 );
+
+/*
+* Song Routes.
+*/
+$router->group(
+    ['prefix' => 'api/v1/song/{album_id}'],
+    function () use ($router) {
+        $router->post('/', 'SongController@create');
+    }
+);

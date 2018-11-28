@@ -29,6 +29,7 @@ jobs:
           command: |
             sudo composer self-update
             composer install -n --prefer-dist
+            composer require league/flysystem
 
       - save_cache:
           paths:
