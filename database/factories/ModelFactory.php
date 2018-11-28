@@ -33,3 +33,15 @@ $factory->define(
         ];
     }
 );
+
+
+$factory->define(
+    App\Models\Song::class, function (Faker\Generator $faker) {
+        return [
+            'name' => $faker->title,
+            'description' => $faker->text(50),
+            'url' => 'audio/mama.mp3',
+            'album_id' => 1,
+        ];
+    }
+);
