@@ -152,4 +152,23 @@ class SongControllerTest extends TestCase
 
         $this->seeStatusCode(404);
     }
+
+    /**
+     * Test getting all songs success
+     *
+     * @return void
+     */
+    public function testGetAllSongsSuccess()
+    {
+        factory(\App\Models\Album::class)->create();
+        factory(\App\Models\Song::class, 3)->create();
+
+        $this->get(
+            'api/v1/song', ['api-token' => $this->_token]
+        );
+
+        $this->seeStatusCode(200);
+        $content = json_decode($this->response->getContent());
+        $this->assertEquals(3, count($content));
+    }
 }
