@@ -150,6 +150,8 @@ class SongControllerTest extends TestCase
             'api/v1/song/12', [], ['api-token' => $this->_token]
         );
 
+        // dd($this->response);
+
         $this->seeStatusCode(404);
     }
 
@@ -165,6 +167,25 @@ class SongControllerTest extends TestCase
 
         $this->get(
             'api/v1/song', ['api-token' => $this->_token]
+        );
+
+        $this->seeStatusCode(200);
+        $content = json_decode($this->response->getContent());
+        $this->assertEquals(3, count($content));
+    }
+
+    /**
+     * Test searching for a song
+     *
+     * @return void
+     */
+    public function testSearchSongSuccess()
+    {
+        factory(\App\Models\Album::class)->create();
+        factory(\App\Models\Song::class, 3)->create();
+
+        $this->get(
+            'api/v1/search/song?q=electro', ['api-token' => $this->_token]
         );
 
         $this->seeStatusCode(200);
