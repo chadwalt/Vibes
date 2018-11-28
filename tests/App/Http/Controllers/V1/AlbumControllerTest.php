@@ -4,12 +4,12 @@ namespace Tests\App\Http\Controller\V1;
 use TestCase;
 
 /**
- * Test UserController file.
+ * Test AlbumController file.
  */
 class AlbumControllerTest extends TestCase
 {
     /**
-     * Sign-up User test details.
+     * Album test details.
      *
      * @var array
      */
