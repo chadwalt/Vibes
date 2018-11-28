@@ -4,7 +4,7 @@ namespace Tests\App\Http\Controller\V1;
 use TestCase;
 
 /**
- * Test UserControllerTest file.
+ * Test UserController file.
  */
 class AlbumControllerTest extends TestCase
 {
@@ -45,7 +45,7 @@ class AlbumControllerTest extends TestCase
      */
     public function testAlbumCreationSuccess()
     {
-        $response = $this->post(
+        $this->post(
             'api/v1/album/', $this->_albumData, ['api-token' => $this->_token]
         );
         $this->seeStatusCode(201);
