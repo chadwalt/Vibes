@@ -42,6 +42,7 @@ $factory->define(
             'description' => $faker->text(50),
             'url' => 'audio/mama.mp3',
             'album_id' => 1,
+            'genre' => 'electro'
         ];
     }
 );

@@ -115,4 +115,17 @@ class SongController extends Controller
         $songs = Song::getSongs();
         return $this->respond(Response::HTTP_OK, $songs);
     }
+
+    /**
+     * Search through songs
+     *
+     * @param Request $request Request
+     *
+     * @return object Response object
+     */
+    public function search(Request $request)
+    {
+        $songs = Song::searchSong($request->q);
+        return $this->respond(Response::HTTP_OK, $songs);
+    }
 }

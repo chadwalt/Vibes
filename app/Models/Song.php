@@ -58,4 +58,17 @@ class Song extends Model
         $songs = Song::with('album:id,name')->get();
         return $songs;
     }
+
+    /**
+     * Search through songs
+     *
+     * @return collection
+     */
+    public static function searchSong($search)
+    {
+        $songs = Song::with('album:id,name')->where('name', 'like', "%{$search}%")
+            ->orWhere('genre', 'like', "%{$search}%")
+            ->get();
+        return $songs;
+    }
 }
