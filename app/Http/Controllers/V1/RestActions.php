@@ -13,8 +13,8 @@ trait RestActions
     /**
      * Return HTTP Responses.
      *
-     * @param object $data        JSON object
      * @param int    $status_code the appropriate status code for the response
+     * @param object $data        JSON object
      *
      * @return Response
      */

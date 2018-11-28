@@ -39,8 +39,10 @@ $router->group(
 * Song Routes.
 */
 $router->group(
-    ['prefix' => 'api/v1/song/album/{album_id}'],
+    ['prefix' => 'api/v1/song'],
     function () use ($router) {
-        $router->post('/', 'SongController@create');
+        $router->post('/album/{album_id}', 'SongController@create');
+        $router->get('/{song_id}', 'SongController@download');
+        $router->delete('/{song_id}', 'SongController@delete');
     }
 );

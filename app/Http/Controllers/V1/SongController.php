@@ -56,4 +56,49 @@ class SongController extends Controller
             ['message' => 'song created']
         );
     }
+
+    /**
+     * Download Song
+     *
+     * @param Request $request Request
+     * @param int     $song_id The id of the song.
+     *
+     * @return object Response object
+     */
+    public function download(Request $request, $song_id)
+    {
+        $song = Song::find($song_id);
+
+        if (empty($song)) {
+            return $this->respond(
+                Response::HTTP_NOT_FOUND,
+                ['message' => 'Song can\'t be found']
+            );
+        }
+
+        return $this->downloadFile($song->url, $song->name);
+    }
+
+    /**
+     * Delete Song
+     *
+     * @param Request $request Request
+     * @param int     $song_id The id of the song.
+     *
+     * @return object Response object
+     */
+    public function delete(Request $request, $song_id)
+    {
+        $song = Song::find($song_id);
+
+        if (empty($song)) {
+            return $this->respond(
+                Response::HTTP_NOT_FOUND,
+                ['message' => 'Song can\'t be found']
+            );
+        }
+
+        $this->deleteFile($song->url);
+        return $this->respond(Response::HTTP_NO_CONTENT);
+    }
 }
