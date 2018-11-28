@@ -37,4 +37,15 @@ class Song extends Model
     {
         return $this->belongsTo('App\Models\Album');
     }
+
+    /**
+     * Get all songs and their respective album names
+     *
+     * @return collection
+     */
+    public static function getSongs()
+    {
+        $songs = Song::with('album:id,name')->get();
+        return $songs;
+    }
 }
