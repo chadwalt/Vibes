@@ -46,5 +46,6 @@ $router->group(
         $router->get('/{song_id}', 'SongController@download');
         $router->delete('/{song_id}', 'SongController@delete');
         $router->get('/', 'SongController@getSongs');
+        $router->post('/{song_id}/comment', 'CommentController@create');
     }
 );
