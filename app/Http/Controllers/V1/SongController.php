@@ -22,7 +22,7 @@ class SongController extends Controller
     public function __construct()
     {
         $this->middleware('jwt.auth');
-        $this->middleware('role:artiste', ['only' => 'create']);
+        $this->middleware('role:artiste', ['only' => ['create', 'delete']]);
     }
 
     /**
@@ -47,6 +47,7 @@ class SongController extends Controller
         $song = new Song();
         $song->name = $request->name;
         $song->description = $request->description;
+        $song->genre = $request->genre;
         $song->album_id = $album_id;
         $song->url = $this->uploadFile($request->song);
         $song->save();
