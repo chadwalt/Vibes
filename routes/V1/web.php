@@ -9,7 +9,7 @@
 | It is a breeze. Simply tell Lumen the URIs it should respond to
 | and give it the Closure to call when that URI is requested.
 |
-*/
+ */
 
 /**
  * Sign-up-in User Routes.
@@ -24,8 +24,8 @@ $router->group(
 );
 
 /*
-* Album Routes.
-*/
+ * Album Routes.
+ */
 $router->group(
     ['prefix' => 'api/v1/album'],
     function () use ($router) {
@@ -37,8 +37,8 @@ $router->group(
 );
 
 /*
-* Song Routes.
-*/
+ * Song Routes.
+ */
 $router->group(
     ['prefix' => 'api/v1/song'],
     function () use ($router) {
@@ -47,5 +47,15 @@ $router->group(
         $router->delete('/{song_id}', 'SongController@delete');
         $router->get('/', 'SongController@getSongs');
         $router->post('/{song_id}/comment', 'CommentController@create');
+    }
+);
+
+/*
+ * Search Routes.
+ */
+$router->group(
+    ['prefix' => 'api/v1/search'],
+    function () use ($router) {
+        $router->get('/song', 'SongController@search');
     }
 );
