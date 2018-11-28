@@ -53,7 +53,7 @@ class SongControllerTest extends TestCase
         $this->_songData['song'] = UploadedFile::fake()->create('mama.mp3');
 
         $this->post(
-            'api/v1/song/1', $this->_songData, ['api-token' => $this->_token]
+            'api/v1/song/album/1', $this->_songData, ['api-token' => $this->_token]
         );
         $this->seeStatusCode(201);
         $this->seeInDatabase(
@@ -73,7 +73,7 @@ class SongControllerTest extends TestCase
         $this->_songData['song'] = UploadedFile::fake()->create('mama.pdf');
 
         $this->post(
-            'api/v1/song/1', $this->_songData, ['api-token' => $this->_token]
+            'api/v1/song/album/1', $this->_songData, ['api-token' => $this->_token]
         );
         $this->seeStatusCode(422);
         $this->missingFromDatabase(
