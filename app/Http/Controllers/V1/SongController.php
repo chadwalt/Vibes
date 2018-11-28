@@ -102,4 +102,17 @@ class SongController extends Controller
         $this->deleteFile($song->url);
         return $this->respond(Response::HTTP_NO_CONTENT);
     }
+
+    /**
+     * Return all Songs
+     *
+     * @param Request $request Request
+     *
+     * @return object Response object
+     */
+    public function getSongs(Request $request)
+    {
+        $songs = Song::getSongs();
+        return $this->respond(Response::HTTP_OK, $songs);
+    }
 }
