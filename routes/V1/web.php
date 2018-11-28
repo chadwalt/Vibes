@@ -67,5 +67,6 @@ $router->group(
     ['prefix' => 'api/v1/playlist'],
     function () use ($router) {
         $router->post('/', 'PlaylistController@create');
+        $router->post('/{playlist_id}/song/{song_id}', 'PlaylistController@addSong');
     }
 );

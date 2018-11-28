@@ -41,8 +41,24 @@ class Playlist extends Model
      *
      * @return relationship
      */
-    public function song()
+    public function playlistSongs()
     {
-        return $this->hasMany('App\Models\Song');
+        return $this->hasMany('App\Models\PlaylistSong');
+    }
+
+
+    /**
+     * Find the playlist of the current user
+     *
+     * @param int $playlistId - The id of the playlist
+     * @param int $userId     - the id of the user.
+     *
+     * @return void
+     */
+    public static function findPlaylist($playlistId, $userId)
+    {
+        $playlist = Playlist::where('id', $playlistId)
+            ->where('user_id', $userId)->first();
+        return $playlist;
     }
 }
