@@ -40,13 +40,12 @@ class PlaylistController extends Controller
         $playlist->name = $request->name;
         $playlist->description = $request->description;
         $playlist->user_id = $request->user->id;
+        $playlist->save();
 
-        if ($playlist->save()) {
-            return $this->respond(
-                Response::HTTP_CREATED,
-                ['message' => 'playlist created']
-            );
-        }
+        return $this->respond(
+            Response::HTTP_CREATED,
+            ['message' => 'playlist created']
+        );
     }
 
     /**
@@ -73,13 +72,11 @@ class PlaylistController extends Controller
         $playlistSong = new PlaylistSong();
         $playlistSong->playlist_id = $playlist_id;
         $playlistSong->song_id = $song_id;
-
-        if ($playlistSong->save()) {
-            return $this->respond(
-                Response::HTTP_CREATED,
-                ['message' => 'Song add to playlist']
-            );
-        }
+        $playlistSong->save();
+        return $this->respond(
+            Response::HTTP_CREATED,
+            ['message' => 'Song add to playlist']
+        );
     }
 
     /**

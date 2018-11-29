@@ -180,4 +180,22 @@ class UserControllerTest extends TestCase
         $response = $this->call('post', 'api/v1/user/validate', $userData);
         $this->assertEquals(422, $response->status());
     }
+
+    /**
+     * Test insecure password provided
+     *
+     * @return void
+     */
+    public function testInsecurePassword()
+    {
+        $this->_userData['password'] = 'dsadf';
+        $this->_userData['password_confirmation'] = 'dsadf';
+        $response = $this->call('post', 'api/v1/user/signup', $this->_userData);
+        $this->assertEquals(422, $response->status());
+        $response = json_decode($response->Content());
+        $this->assertContains(
+            'The password must contain 1 lowercase,1 uppercase, numeric, special character, and 8 characters long',
+            $response->message
+        );
+    }
 }
