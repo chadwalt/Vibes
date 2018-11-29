@@ -149,9 +149,6 @@ class SongControllerTest extends TestCase
         $this->delete(
             'api/v1/song/12', [], ['api-token' => $this->_token]
         );
-
-        // dd($this->response);
-
         $this->seeStatusCode(404);
     }
 
@@ -191,5 +188,20 @@ class SongControllerTest extends TestCase
         $this->seeStatusCode(200);
         $content = json_decode($this->response->getContent());
         $this->assertEquals(3, count($content));
+    }
+
+    /**
+     * Test wrong song format upload
+     *
+     * @return void
+     */
+    public function testWrongFileFormat()
+    {
+        $this->_songData['song'] = UploadedFile::fake()->create('mama.pdf');
+
+        $this->post(
+            'api/v1/song/album/1', $this->_songData, ['api-token' => $this->_token]
+        );
+        $this->seeStatusCode(422);
     }
 }
