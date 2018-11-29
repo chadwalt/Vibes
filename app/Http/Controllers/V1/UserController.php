@@ -34,8 +34,7 @@ class UserController extends Controller
         if (empty($this->_validatePassword($request->password))) {
             return $this->respond(
                 Response::HTTP_UNPROCESSABLE_ENTITY,
-                ['message' => 'The password must contain 1 lowercase,1 uppercase,
-                                numeric, special character, and 8 characters long']
+                ['message' => 'The password must contain 1 lowercase,1 uppercase, numeric, special character, and 8 characters long']
             );
         }
 
