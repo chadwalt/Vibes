@@ -18,7 +18,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'first_name', 'last_name', 'username', 'email', 'password', 'role'
     ];
 
     /**
@@ -27,6 +27,30 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password'
     ];
+
+    /**
+     * These rules must be fulfilled when validating
+     *
+     * @var array
+     */
+    public static $rules = [
+        'first_name' => 'required|string',
+        'last_name' => 'required|string',
+        'email' => 'required|string|email|unique:users',
+        'username' => 'required|unique:users',
+        'password' => 'required|confirmed',
+        'role' => 'string'
+    ];
+
+    /**
+     * Get all user albums
+     *
+     * @return relationship
+     */
+    public function albums()
+    {
+        return $this->hasMany('App\Models\Album');
+    }
 }

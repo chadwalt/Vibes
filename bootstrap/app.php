@@ -48,6 +48,15 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->singleton(
+    Illuminate\Contracts\Filesystem\Factory::class,
+    function ($app) {
+        return new Illuminate\Filesystem\FilesystemManager($app);
+    }
+);
+
+$app->configure('filesystems');
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -63,9 +72,12 @@ $app->singleton(
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware(
+    [
+        'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
+        'role' => App\Http\Middleware\RoleMiddleware::class
+    ]
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -93,10 +105,11 @@ $app->singleton(
 |
 */
 
-$app->router->group([
-    'namespace' => 'App\Http\Controllers',
-], function ($router) {
-    require __DIR__.'/../routes/web.php';
-});
+$app->router->group(
+    ['namespace' => 'App\Http\Controllers\V1'],
+    function ($router) {
+        require __DIR__.'/../routes/V1/web.php';
+    }
+);
 
 return $app;

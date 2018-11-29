@@ -1,0 +1,124 @@
+FORMAT: 1A
+HOST: https://vibes-music.herokuapp.com/
+
+# Vibes
+
+Vibes is a Music Store Application API that will bring an upcoming artiste to the limelight.
+
+## Sign-up User [/api/v1/user/signup]
+
+### Sign-up [POST]
+
++ Request (application/json)
+
+        {
+            "first_name": "John",
+            "last_name": "Deo",
+            "username": "John",
+            "email": "JohnDeo@gmail.com",
+            "password": "John",
+            "password_confirmation": "John",
+            "role": "user"
+        }
+
++ Response 201 (application/json)
+
+        [
+            {
+                "message": "User Created",
+            }
+        ]
+
+## Sign-in User [/api/v1/user/]
+
+### Sign-up [POST]
+
++ Request (application/json)
+
+        {
+            "email": "JohnDeo@gmail.com",
+            "password": "John",
+        }
+
++ Response 200 (application/json)
+
+        [
+            {
+                "message": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk",
+            }
+        ]
+        
+# Group Album Collection
+
+## Create and Get all Albums [/api/v1/album]
+
+### Create Album [POST]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+    
+    + Body
+            
+            {
+                "name": "Love",
+                "decription": "Love rocks",
+            }
+
++ Response 201 (application/json)
+
+        [
+            {
+                "message": "Album Created",
+            }
+        ]
+
+### Get all Album [GET]
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
++ Response 201 (application/json)
+
+        [
+            {
+                "name": "Love Hurts",
+                "Description": "Hurts deeply"
+            },
+            {
+                "name": "Am Speeding",
+                "Description": "Speeding is coming"
+            },
+        ]
+
+## Update and Delete Album [/api/v1/album/{id}]
+### Update Album [PATCH]
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+    
+    + Body
+        
+            {
+                "name": "Love",
+                "decription": "Love rocks",
+            }
++ Response 200 (application/json)
+
+        [
+            {
+                "name": "Love",
+                "Description": "Love rocks"
+            }
+        ]
+        
+### Delete Album [DELETE]
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+    
++ Response 204 (application/json)
