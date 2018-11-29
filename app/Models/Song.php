@@ -62,6 +62,8 @@ class Song extends Model
     /**
      * Search through songs
      *
+     * @param string $search - search text.
+     *
      * @return collection
      */
     public static function searchSong($search)
@@ -71,4 +73,5 @@ class Song extends Model
             ->get();
         return $songs;
     }
+
 }
