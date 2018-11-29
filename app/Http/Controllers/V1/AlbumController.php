@@ -42,13 +42,12 @@ class AlbumController extends Controller
         $album->name = $request->name;
         $album->description = $request->description;
         $album->user_id = $request->user->id;
+        $album->save();
 
-        if ($album->save()) {
-            return $this->respond(
-                Response::HTTP_CREATED,
-                ['message' => 'Album created']
-            );
-        }
+        return $this->respond(
+            Response::HTTP_CREATED,
+            ['message' => 'Album created']
+        );
     }
 
     /**
