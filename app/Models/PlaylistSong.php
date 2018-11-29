@@ -35,4 +35,23 @@ class PlaylistSong extends Model
     {
         return $this->belongsTo('App\Models\Playlist');
     }
+
+    /**
+     * Return all songs on a playlist
+     *
+     * @param int $playlist_id - ID of the playlist
+     *
+     * @return collection
+     */
+    public static function getPlaylistSongs($playlist_id)
+    {
+        $playlistSongs = PlaylistSong::where('playlist_id', $playlist_id)->get();
+        $songs = [];
+
+        foreach ($playlistSongs as $playlistSong) {
+            $songs[] = Song::find($playlistSong->song_id);
+        }
+
+        return $songs;
+    }
 }

@@ -68,5 +68,6 @@ $router->group(
     function () use ($router) {
         $router->post('/', 'PlaylistController@create');
         $router->post('/{playlist_id}/song/{song_id}', 'PlaylistController@addSong');
+        $router->get('{playlist_id}/share', 'PlaylistController@share');
     }
 );
