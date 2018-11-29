@@ -29,7 +29,7 @@ Vibes is a Music Store Application API that will bring an upcoming artiste to th
             }
         ]
 
-## Sign-in User [/api/v1/user/]
+## Sign-in User [/api/v1/user]
 
 ### Sign-up [POST]
 
@@ -51,6 +51,7 @@ Vibes is a Music Store Application API that will bring an upcoming artiste to th
 # Group Album Collection
 
 ## Create and Get all Albums [/api/v1/album]
+Only an Artiste can Use these routes
 
 ### Create Album [POST]
 
@@ -63,7 +64,7 @@ Vibes is a Music Store Application API that will bring an upcoming artiste to th
             
             {
                 "name": "Love",
-                "decription": "Love rocks",
+                "description": "Love rocks"
             }
 
 + Response 201 (application/json)
@@ -74,7 +75,7 @@ Vibes is a Music Store Application API that will bring an upcoming artiste to th
             }
         ]
 
-### Get all Album [GET]
+### Get all Albums [GET]
 + Request (application/json)
     + Headers
 
@@ -85,11 +86,11 @@ Vibes is a Music Store Application API that will bring an upcoming artiste to th
         [
             {
                 "name": "Love Hurts",
-                "Description": "Hurts deeply"
+                "description": "Hurts deeply"
             },
             {
                 "name": "Am Speeding",
-                "Description": "Speeding is coming"
+                "description": "Speeding is coming"
             },
         ]
 
@@ -122,3 +123,195 @@ Vibes is a Music Store Application API that will bring an upcoming artiste to th
             api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
     
 + Response 204 (application/json)
+
+# Group Song Collection
+
+## Create Song [/api/v1/song/album/{id}]
+Only an Artiste can add a song. The song attribute requires a song upload
+
+### Create Album [POST]
+
++ Request (form-data)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
+    + Body
+
+            {
+                "name": "Love",
+                "description": "Love rocks",
+                "song": "This is a file upload",
+                "genre": "rock",
+            }
+
++ Response 201 (application/json)
+
+        [
+            {
+                "message": "Song Created",
+            }
+        ]
+
+## Download a Song [/api/v1/song/{song_id}]
+### Download Song [GET]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
++ Response 200 (application/json)
+
+
+## Deledte a Song [/api/v1/song/{song_id}]
+### Delete Song [DELETE]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
++ Response 204 (application/json)
+
+
+## All Songs [/api/v1/song]
+### Get all Songs [GET]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
++ Response 200 (application/json)
+
+## Comment on a Song [/api/v1/song/{song_id}/comment]
+### Add Comment [POST]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
+    + Body
+
+            {
+                "name": "Love",
+                "description": "Love rocks"
+            }
+
++ Response 201 (application/json)
+
+        [
+            {
+                "message": "Comment Created",
+            }
+        ]
+    
+# Group Search Collection
+
+## Search all songs [/api/v1/search]
+### Search Song [GET]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
++ Response 201 (application/json)
+
+        [
+            {
+                "id": 6,
+                "name": "chad",
+                "description": "work",
+                "url": "audio/magnom_my_baby_lyric_video_ft_joey_b_mp3_63699 (1).mp3",
+                "album_id": 2,
+                "created_at": "2018-11-27 18:58:54",
+                "updated_at": "2018-11-27 18:58:54",
+                "genre": null,
+                "album": {
+                    "id": 2,
+                    "name": "Love is true"
+                }
+            },
+            {
+                "id": 7,
+                "name": "chad",
+                "description": "work",
+                "url": "audio/magnom_my_baby_lyric_video_ft_joey_b_mp3_63699 (1).mp3",
+                "album_id": 2,
+                "created_at": "2018-11-28 04:34:51",
+                "updated_at": "2018-11-28 04:34:51",
+                "genre": null,
+                "album": {
+                    "id": 2,
+                    "name": "Love is true"
+                }
+            },
+        ]
+        
+
+
+#Group Playlist Collection
+
+## Create new Playlist [/api/v1/playlist]
+### Create Playlist [POST]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+    
+    + Body
+            
+            {
+                "name": "Love",
+                "description": "Love rocks"
+            }
+
++ Response 201 (application/json)
+
+        [
+            {
+                "message": "Playlist Created",
+            }
+        ]
+
+## Add Song to a Playlist [/api/v1/playlist/{playlist_id}/song/{song_id}]
+### Create Playlist [POST]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
++ Response 201 (application/json)
+
+        [
+            {
+                "message": "Song added to playlist",
+            }
+        ]
+
+## Share a Playlist [/api/v1/playlist/{playlist_id}/share]
+### Share Playlist [POST]
+
++ Request (application/json)
+    + Headers
+
+            api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2aWJlcyIsInN1YiI6OCwiaWF0IjoxNTQzMjIzODExLCJleHAiOjE1NDMyMjc0MTF9.rCJSePV5ByoAZ4St_b-UEx-pChu6m3nDnsd4Uw7HUXk
+
++ Response 201 (application/json)
+
+        [
+            {
+                "id": 6,
+                "name": "chad",
+                "description": "work",
+                "url": "audio/magnom_my_baby_lyric_video_ft_joey_b_mp3_63699 (1).mp3",
+                "album_id": 2,
+                "created_at": "2018-11-27 18:58:54",
+                "updated_at": "2018-11-27 18:58:54"
+            }
+        ]
