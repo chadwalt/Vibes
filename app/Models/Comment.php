@@ -22,14 +22,4 @@ class Comment extends Model
      * @var array
      */
     public static $rules = ['comment' => 'required|string|min:10'];
-
-    /**
-     * Get all user albums
-     *
-     * @return relationship
-     */
-    public function albums()
-    {
-        return $this->belongsTo()('App\Models\Song');
-    }
 }
