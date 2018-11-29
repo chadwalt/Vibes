@@ -17,16 +17,6 @@ class PlaylistSong extends Model
     protected $fillable = ['playlist_id', 'song_id', 'user_id'];
 
     /**
-     * Get all songs of the playlist
-     *
-     * @return relationship
-     */
-    public function song()
-    {
-        return $this->hasMany('App\Models\Song');
-    }
-
-    /**
      * Get the playlist
      *
      * @return relationship
