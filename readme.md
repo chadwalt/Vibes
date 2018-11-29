@@ -6,6 +6,8 @@
 
 Vibes is a Music Store Application API that will bring an upcoming artiste to the limelight. The application is built on top of the lumen framework.
 
+The live application is hosted here [Vibes](https://vibes2.docs.apiary.io/#)
+
 ## Installation Requirements
 
 For the Vibes application to fully function the following requirements need to be installed:-
