@@ -107,4 +107,36 @@ class PlaylistControllerTest extends TestCase
             'playlist_songs', [ 'song_id' => 12]
         );
     }
+
+    /**
+     * Test sharing of playlist.
+     *
+     * @return void
+     */
+    public function testSharePlaylist()
+    {
+        factory(\App\Models\Album::class)->create();
+        factory(\App\Models\Playlist::class)->create();
+        factory(\App\Models\Song::class)->create();
+        $this->get(
+            'api/v1/playlist/1/share', ['api-token' => $this->_token]
+        );
+        $this->seeStatusCode(200);
+    }
+
+    /**
+     * Test sharing of playlist that dosen't exist.
+     *
+     * @return void
+     */
+    public function testSharePlaylistFailure()
+    {
+        factory(\App\Models\Album::class)->create();
+        factory(\App\Models\Playlist::class)->create();
+        factory(\App\Models\Song::class)->create();
+        $this->get(
+            'api/v1/playlist/11/share', ['api-token' => $this->_token]
+        );
+        $this->seeStatusCode(404);
+    }
 }
