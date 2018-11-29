@@ -11,6 +11,10 @@
 |
  */
 
+$router->get("/", function () use ($router) {
+    return redirect()->to('https://vibes2.docs.apiary.io/#');
+});
+
 /**
  * Sign-up-in User Routes.
  */
