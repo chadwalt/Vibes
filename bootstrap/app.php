@@ -68,9 +68,9 @@ $app->configure('filesystems');
 |
 */
 
-// $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware(
+    [ App\Http\Middleware\Cors::class]
+);
 
 $app->routeMiddleware(
     [
