@@ -133,13 +133,13 @@ class UserController extends Controller
     }
 
     /**
-     * Validate email address and password.
+     * Validate email address.
      *
      * @param Request $request Request
      *
      * @return object Response
      */
-    public function validateData(Request $request)
+    public function validateEmail(Request $request)
     {
         $email_regex = '/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i';
 
