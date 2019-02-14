@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Storage;
 trait FileTrait
 {
     /**
+     * Response Headers
+     *
+     * @var array headers
+     */
+    protected $responseHeaders = [
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
+        'Access-Control-Allow-Credentials' => 'true',
+        'Access-Control-Max-Age' => '86400',
+        'Access-Control-Allow-Headers' =>
+            'Content-Type, Authorization, X-Requested-With',
+    ];
+
+    /**
      * Upload files to the store/audio directory.
      *
      * @param file $file the file to upload
@@ -53,8 +67,12 @@ trait FileTrait
      *
      * @return mixed
      */
-    public function downloadFile($file, $filename='', $headers=[])
+    public function downloadFile($file, $filename = '', $headers = [])
     {
+        if (empty($headers)) {
+            $headers = $this->responseHeaders;
+        }
+
         if (empty($file)) {
             return null;
         }

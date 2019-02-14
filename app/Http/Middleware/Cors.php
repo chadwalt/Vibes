@@ -27,14 +27,14 @@ class Cors
                 'Content-Type, Authorization, X-Requested-With',
         ];
 
-        if ($request->isMethod()('OPTIONS')) {
+        if ($request->isMethod('OPTIONS')) {
             return response()->json('{"method": "OPTIONS"}', 200, $headers);
         }
 
         $response = $next($request);
 
-        foreach ($headers as $key => $value) {
-            $response->header($key, $value);
+        if (method_exists($response, 'withHeaders')) {
+            $response->withHeaders($headers);
         }
 
         return $response;
